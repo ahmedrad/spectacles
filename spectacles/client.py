@@ -148,6 +148,9 @@ class LookerClient:
         return await self.async_client.request(method, url, *args, **kwargs)
 
     async def get(self, url, *args, **kwargs) -> httpx.Response:
+        logger.debug(url)
+        logger.debug(args)
+        logger.debug(kwargs)
         return await self.request("GET", url, *args, **kwargs)
 
     async def post(self, url, *args, **kwargs) -> httpx.Response:
@@ -841,6 +844,7 @@ class LookerClient:
     async def content_validation(self) -> JsonDict:
         logger.debug("Validating all content in Looker")
         url = utils.compose_url(self.api_url, path=["content_validation"])
+        logger.debug(url)
         response = await self.get(
             url=url, timeout=3600
         )  # 1 hour timeout for content validation
