@@ -149,8 +149,8 @@ class LookerClient:
 
     async def get(self, url, *args, **kwargs) -> httpx.Response:
         logger.debug(url)
-        logger.debug(args)
-        logger.debug(kwargs)
+        logger.debug(*args)
+        logger.debug(**kwargs)
         return await self.request("GET", url, *args, **kwargs)
 
     async def post(self, url, *args, **kwargs) -> httpx.Response:
